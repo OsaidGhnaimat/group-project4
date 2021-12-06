@@ -1,83 +1,85 @@
-<?php 
+<?php
 include 'includes/header-user.php';
+$user_id_session = $_SESSION['user'];
+$conn = mysqli_connect("localhost", "root", "", "ecommerce") or die($conn->err);
+$imagepath = "";
+
+function path()
+{
+    global $imagepath;
+    $image = $_FILES['filename'] ?? null;
+    $imagepath  = "";
+    if ($image && $image['tmp_name']) {
+        $imagepath = "/register/uploads/" . uniqid() . $image['name'];
+        move_uploaded_file($image['tmp_name'], $imagepath);
+    }
+}
+if (isset($_POST['update'])) {
+    $user_id       = $_POST['userId'];
+    $user_name     = $_POST['user_name'];
+    $user_email    = $_POST['user_email'];
+    $user_password = $_POST['user_password'];
+    path();
+    if (!$imagepath) {
+        $sql = "SELECT * from users WHERE user_id = '{$_SESSION['user']}'";
+        $result = mysqli_query($conn, $sql);
+        $row   =  mysqli_fetch_assoc($result);
+        $imagepath =  $row['user_img'];
+    }
+    $conn->query("UPDATE users SET user_name ='$user_name',
+        user_email = '$user_email',
+        user_password ='$user_password',
+        user_img = '{$imagepath}'  WHERE user_id = '$user_id_session' ");
+}
+
+
+$query = "SELECT * FROM users  WHERE user_id = $user_id_session ";
+
+$result = $conn->query($query);
+$row = $result->fetch_assoc();
+
+
 ?>
 
 
-	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
-		<h2 class="ltext-105 cl0 txt-center">
-			About
-		</h2>
-	</section>	
 
 
-	<!-- Content page -->
-	<section class="bg0 p-t-75 p-b-120">
-		<div class="container">
-			<div class="row p-b-148">
-				<div class="col-md-7 col-lg-8">
-					<div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
-						<h3 class="mtext-111 cl2 p-b-16">
-							Our Story
-						</h3>
-
-						<p class="stext-113 cl6 p-b-26">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat consequat enim, non auctor massa ultrices non. Morbi sed odio massa. Quisque at vehicula tellus, sed tincidunt augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas varius egestas diam, eu sodales metus scelerisque congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas gravida justo eu arcu egestas convallis. Nullam eu erat bibendum, tempus ipsum eget, dictum enim. Donec non neque ut enim dapibus tincidunt vitae nec augue. Suspendisse potenti. Proin ut est diam. Donec condimentum euismod tortor, eget facilisis diam faucibus et. Morbi a tempor elit.
-						</p>
-
-						<p class="stext-113 cl6 p-b-26">
-							Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. 
-						</p>
-
-						<p class="stext-113 cl6 p-b-26">
-							Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
-						</p>
-					</div>
-				</div>
-
-				<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
-					<div class="how-bor1 ">
-						<div class="hov-img0">
-							<img src="images/about-01.jpg" alt="IMG">
-						</div>
-					</div>
-				</div>
-			</div>
+<!-- Content page -->
+<div class="sec-banner bg0 p-t-150 p-b-50">
+	<div class="container  m-auto justify-content-center ">
+		<div class="row w-25  m-auto justify-content-center p-b-50 rounded-circle">
 			
-			<div class="row">
-				<div class="order-md-2 col-md-7 col-lg-8 p-b-30">
-					<div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
-						<h3 class="mtext-111 cl2 p-b-16">
-							Our Mission
-						</h3>
-
-						<p class="stext-113 cl6 p-b-26">
-							Mauris non lacinia magna. Sed nec lobortis dolor. Vestibulum rhoncus dignissim risus, sed consectetur erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam maximus mauris sit amet odio convallis, in pharetra magna gravida. Praesent sed nunc fermentum mi molestie tempor. Morbi vitae viverra odio. Pellentesque ac velit egestas, luctus arcu non, laoreet mauris. Sed in ipsum tempor, consequat odio in, porttitor ante. Ut mauris ligula, volutpat in sodales in, porta non odio. Pellentesque tempor urna vitae mi vestibulum, nec venenatis nulla lobortis. Proin at gravida ante. Mauris auctor purus at lacus maximus euismod. Pellentesque vulputate massa ut nisl hendrerit, eget elementum libero iaculis.
-						</p>
-
-						<div class="bor16 p-l-29 p-b-9 m-t-22">
-							<p class="stext-114 cl6 p-r-40 p-b-11">
-								Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
-							</p>
-
-							<span class="stext-111 cl8">
-								- Steve Job’s 
-							</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
-					<div class="how-bor2">
-						<div class="hov-img0">
-							<img src="images/about-02.jpg" alt="IMG">
-						</div>
-					</div>
-				</div>
-			</div>
+				<img src="register/uploads/<?php echo @$row['user_img'] ?>" class="card-img-top img-prof" alt="...">
+			
 		</div>
-	</section>	
-	
-<?php 
-	include 'includes/footer-user.php';
-	?>
+		<div class="card mt-3 p-3 d-flex flex-column justify-content-center w-50 m-auto ">
+			<h4 class=" mb-5">User Info</h4>
+			<form action="" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="userId" value="<?php echo @$row['user_id'] ?> ">
+				<div class=" mb-3  ">
+					<div class="input-group-text " id="inputGroup-sizing-default ">Username</div>
+					<input type="text" value="<?php echo @$row['user_name'] ?> " name="user_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class=" mb-3  ">
+					<span class="input-group-text" id="inputGroup-sizing-default">User Email</span>
+					<input type="text" value="<?php echo @$row['user_email'] ?> " name="user_email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class=" mb-3">
+					<span class="input-group-text d-block" id="inputGroup-sizing-default">Password </span>
+					<input type="password" value="<?php echo @$row['user_password'] ?> " name="user_password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div>
+					<input type="file" id="myFile" name="filename">
+				</div>
+				<div class="form-actions form-group float-right w-25 ">
+					<button type="submit" id="update_profile" class="btn btn-primary btn-sm w-100 p-2" name="update"> Save Changes</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<a href="register/logout.php">logout</a>
+
+<?php
+include 'includes/footer-user.php';
+?>

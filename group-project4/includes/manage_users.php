@@ -62,14 +62,14 @@ if (isset($_GET['edit_user'])) {
                                 <div class="form-group">
                                     <div class="form-group">
                                         <?php if ($update == true) { ?>
-                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-25 float-right" name="update_user">
+                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-100 float-right" name="update_user">
                                                 <span id="payment-button-amount">update</span>
                                                 <span id="payment-button-sending" style="display:none;">Sending…</span>
                                             </button>
                                         <?php } else { ?>
-                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-25 float-right" name="add_user">
+                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-100 float-right" name="add_user">
                                                 <i class="fa fa-plus"></i>&nbsp;
-                                                <span id="payment-button-amount">Add Category</span>
+                                                <span id="payment-button-amount">Add User</span>
                                                 <span id="payment-button-sending" style="display:none;">Sending…</span>
                                             </button>
                                         <?php } ?>
