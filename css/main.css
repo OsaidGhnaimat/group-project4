@@ -332,8 +332,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .logo img {
-  width: 85px;
-  height: 85px;
+  width: 100px;
+  height: 100px;
 }
 
 
@@ -3084,8 +3084,8 @@ input.num-product::-webkit-inner-spin-button {
 
 /*---------------------------------------------*/
 .hov-btn1:hover {
-  border-color: #222;
-  background-color: #222;
+  border-color: #d6a760;
+  background-color: #d6a760;
   color: #fff;
 }
 

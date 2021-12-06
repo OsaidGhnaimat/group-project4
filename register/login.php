@@ -105,6 +105,6 @@
 	</div>
 	<!-- //main -->
 
-    <!-- <script src="js/signUp.js"></script> -->
+     <script src="js/signUp.js"></script> 
 </body>
 </html>
