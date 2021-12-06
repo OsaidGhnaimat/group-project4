@@ -2,45 +2,7 @@
 <footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row d-flex">
-				<!-- <div class="col-sm-6 col-lg-6 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Categories
-					</h4>
 
-					<ul>
-						<li class="p-b-10">
-							<a href="product.php?category=18" class="stext-107 cl7 hov-cl1 trans-04">
-								Pens
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="product.php?category=19" class="stext-107 cl7 hov-cl1 trans-04">
-								Note Books
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="product.php?category=20" class="stext-107 cl7 hov-cl1 trans-04">
-								Back Bags
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="product.php?category=21" class="stext-107 cl7 hov-cl1 trans-04">
-								Cadrs
-							</a>
-						</li>
-
-                        <li class="p-b-10">
-							<a href="product.php?category=22" class="stext-107 cl7 hov-cl1 trans-04">
-								Stickers
-							</a>
-						</li>
-					</ul>
-				</div> -->
-
-				
 			</div>
 
 			<div class="p-t-40">

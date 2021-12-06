@@ -92,19 +92,19 @@ if (isset($_GET['edit_product'])) {
                                         while ($row          = mysqli_fetch_assoc($category_query)) {
                                             $category_id2    = $row['category_id'];
                                             $category_name2  = $row['category_name'];
-                                            echo "<option class='w-25' value='{$category_id2}'>{$category_name2}<?option>";
+                                            echo "<option class='w-100' value='{$category_id2}'>{$category_name2}<?option>";
                                         }
                                         ?>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                 <?php if ($update == true) { ?>
-                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-25 float-right" name="update_product">
+                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-100 float-right" name="update_product">
                                                 <span id="payment-button-amount">update</span>
                                                 <span id="payment-button-sending" style="display:none;">Sending…</span>
                                             </button>
                                         <?php } else { ?>
-                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-25 float-right" name="add_product">
+                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-100 float-right" name="add_product">
                                                 <i class="fa fa-plus"></i>&nbsp;
                                                 <span id="payment-button-amount">Add Products</span>
                                                 <span id="payment-button-sending" style="display:none;">Sending…</span>

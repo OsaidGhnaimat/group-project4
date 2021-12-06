@@ -49,20 +49,7 @@ $row = $result->fetch_assoc();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
-    <style>
-        .card-img-top {
-            border-radius: 50%;
-            align-items: center;
-            width: 250px;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .circle {
-            border: none;
-            align-items: center;
-        }
-    </style>
+   
 </head>
 
 

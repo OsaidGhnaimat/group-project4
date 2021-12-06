@@ -43,15 +43,15 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                       <img class ="w-50 m-auto mb-5" src="../images/903d371c-e6d4-443e-879b-13da8804106b-removebg-preview.png" alt="">
+                      <a href=""></a> <img class =" w-50 m-b-55 m-auto  mt-5" src="../images/Colorful_Illustrative_Childish_Kids_Owl_Bird_Logo_1.png" alt="">
                     </div>
                     <div class="clearfix"></div>
                     <br />
                     <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu mt-5">
                         <div class="menu_section">
                             <ul class="nav side-menu">
-                                <li><a href="admin_dashboard.php"><i class="fa fa-home p-2 mt-5"></i> Admin Dashboard </a>
+                                <li><a href="admin_dashboard.php"><i class="fa fa-home p-2 "></i> Admin Dashboard </a>
                                 <li><a href="./manage_users.php"><i class="fas fa-user-alt p-2"></i> Manage Users </a>
                                 <li><a href="./manage_categories.php"><i class="fas fa-th p-2 "></i> Manage Categories </a>
                                 <li><a href="./manage_products.php"><i class="fas fa-th p-2"></i> Manage Products </a>

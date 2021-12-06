@@ -39,6 +39,7 @@ $conn=mysqli_connect('localhost','root','','ecommerce');
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+
 </head>
 <body class="animsition">
 	
@@ -73,7 +74,7 @@ $conn=mysqli_connect('localhost','root','','ecommerce');
 
 							<li>
 								<?php if(isset($_SESSION['user'])){?>
-									<a href="register/test.php">Profile</a>
+									<a href="profile.php">Profile</a>
 								<?php }else{?>
 									<a href="register/login.php">profile</a>
 								<?php } ?>
@@ -133,7 +134,7 @@ $conn=mysqli_connect('localhost','root','','ecommerce');
 				</li>
 
 				<li>
-					<a href="register/test.php">Profile</a>
+					<a href="profile.php">Profile</a>
 				</li>
 				<li>
 								<a href="register/login.php">Login</a>

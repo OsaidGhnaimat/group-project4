@@ -47,7 +47,7 @@
                            $_SESSION['user'] = $row2['user_id'];
                          }
                             echo $_SESSION['user'];
-                         header("Location:test.php");
+                         header("Location:../index.php");
 
                     }else $email_error = "The email you entered isn’t connected to an account";
             }
