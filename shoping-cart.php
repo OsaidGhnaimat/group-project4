@@ -1,9 +1,10 @@
 <?php
-@session_start();
+include 'includes/header-user.php';
+
 if (isset($_GET['delete-cart'])) {
 	session_unset();
 }
-include 'includes/header-user.php';
+
 ?>
 <!-- Shoping Cart -->
 <form class="bg0 p-t-75 p-b-85">
@@ -21,9 +22,14 @@ include 'includes/header-user.php';
 								<th class="column-5">Total</th>
 							</tr>
 							<?php
+							if(!empty($_SESSION['cart'])){
+
+							
 							foreach (@$_SESSION['cart'] as $key => $value) {
 								if (isset($_GET['Proceed-to-Checkout'])) {
 									$id_product = $value['id'];
+									//  $_SESSION['user'] = $row2['user_id'];
+									//  $a=$_SESSION['user'];
 									$query = "INSERT INTO orders(user_id , product_id ) VALUES (15, $id_product)";
 									$admin_query = mysqli_query($conn, $query);
 								}
@@ -43,8 +49,11 @@ include 'includes/header-user.php';
 										<b><?php echo $value['num-product'] ?></b>
 									</td>
 									<td class="column-5">$<?php echo @$value['price'] * @$value['num-product']  ?></td>
+									
 								</tr>
-							<?php } ?>
+								
+								<?php @$total += $value['price'] * $value['num-product'];?>
+							<?php } }?>
 						</table>
 					</div>
 					<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
@@ -62,9 +71,22 @@ include 'includes/header-user.php';
 				<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 					<h4 class="mtext-109 cl2 p-b-30">
 						Cart Totals
+						
 					</h4>
 					<div class="flex-w flex-t p-t-27 p-b-33">
-					</div>
+							<div class="size-208">
+								<span class="mtext-101 cl2">
+									Total:
+								</span>
+							</div>
+
+							<div class="size-209 p-t-1">
+								<span class="mtext-110 cl2">
+									$<?php echo @$total; ?>
+								</span>
+							</div>
+						</div>
+						
 					<form method="get">
 						<button name="Proceed-to-Checkout" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 							Proceed to Checkout

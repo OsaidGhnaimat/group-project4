@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 // session_unset();
 include 'includes/header-user.php';
 if (isset($_POST['add-to-cart'])) {
