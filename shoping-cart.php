@@ -7,7 +7,7 @@ if (isset($_GET['delete-cart'])) {
 
 ?>
 <!-- Shoping Cart -->
-<form class="bg0 p-t-75 p-b-85">
+<form class="bg0 p-t-150 p-b-85">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">

@@ -113,7 +113,7 @@
 			<!-- section -->
 
 			<!-- Content page -->
-	<section class="bg0 p-t-62 p-b-60 mt-5">
+	<section class="bg0 p-t-120 p-b-60 mt-5">
 		<div class="container">
 			<div class="row">
 			<div class="col-md-4 col-lg-3 p-b-80">
