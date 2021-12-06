@@ -222,9 +222,9 @@
   input[type="submit"] {
     font-size: .9em;
     color: #fff;
-    background: #76b852;
+    background: #d8b581;
     outline: none;
-    border: 1px solid #76b852;
+    border: 1px solid #d8b581;
     cursor: pointer;
     padding: 0.9em;
     -webkit-appearance: none;
@@ -239,7 +239,7 @@
     -o-transition: .5s all;
     -ms-transition: .5s all;
     transition: .5s all;
-    background: #8DC26F;
+    background: #c49d64;
   }
   
   .agileits-top p {
@@ -259,7 +259,7 @@
   }
   
   .agileits-top p a:hover {
-    color: #76b852;
+    color: #cca160;
   }
   
   /*-- //main --*/
@@ -301,7 +301,7 @@
     -moz-transition: .4s ease-in-out;
     -o-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
-    background: #8DC26F;
+    background: #d8b581;
   }
   
   input.checkbox:checked:after {
@@ -314,7 +314,7 @@
     border-color: #fff;
     border-top-color: transparent;
     border-right-color: transparent;
-    background: #8DC26F;
+    background: #d8b581;
   }
   
   .anim input.checkbox:checked:after {

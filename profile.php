@@ -49,7 +49,7 @@ $row = $result->fetch_assoc();
 	<div class="container  m-auto justify-content-center ">
 		<div class="row w-25  m-auto justify-content-center p-b-50 rounded-circle">
 			
-				<img src="register/uploads/<?php echo @$row['user_img'] ?>" class="card-img-top rounded-circle" alt="...">
+				<img src="register/uploads/<?php echo @$row['user_img'] ?>" class="card-img-top img-prof" alt="...">
 			
 		</div>
 		<div class="card mt-3 p-3 d-flex flex-column justify-content-center w-50 m-auto ">
