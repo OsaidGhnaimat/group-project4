@@ -1,5 +1,7 @@
 <?php 
+session_start();
 $conn=mysqli_connect('localhost','root','','ecommerce');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,17 +72,24 @@ $conn=mysqli_connect('localhost','root','','ecommerce');
 							</li>
 
 							<li>
-								<a href="profile.php">Profile</a>
+								<?php if(isset($_SESSION['user'])){?>
+									<a href="register/test.php">Profile</a>
+								<?php }else{?>
+									<a href="register/login.php">profile</a>
+								<?php } ?>
+								
+							</li>
+							<li>
+								<a href="register/login.php">Login</a>
+							</li>
+							<li>
+								<a href="register/signUp.php">SignUp</a>
 							</li>
 						</ul>
 					</div>	
 
 					<!-- Icon header -->
-					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-							<i class="zmdi zmdi-search"></i>
-						</div>
-					</div>
+					
 				</nav>
 			</div>	
 		</div>
@@ -124,8 +133,14 @@ $conn=mysqli_connect('localhost','root','','ecommerce');
 				</li>
 
 				<li>
-					<a href="profile.php">Profile</a>
+					<a href="register/test.php">Profile</a>
 				</li>
+				<li>
+								<a href="register/login.php">Login</a>
+							</li>
+							<li>
+								<a href="register/signUp.php">SignUp</a>
+							</li>
 			</ul>
 		</div>
 
