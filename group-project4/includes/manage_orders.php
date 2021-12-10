@@ -22,7 +22,7 @@ include './connection.php';
                                             <th class="column-title h6"> Order status </th>
                                             <th class="column-title h6">Order Product</th>
                                             <th class="column-title h6">Order Date</th>
-                                            <th class="column-title h6">Order Quantity</th>
+                                            
                                             <th></th> 
                                     </thead>
                                     <tbody>
@@ -38,9 +38,8 @@ include './connection.php';
                                             <td><?php echo $row['order_id'] ?></td>
                                             <td><?php echo $row['user_name'] ?></td>
                                             <td><?php echo $row['order_status'] ?></td>
-                                            <td><img src="../uploads/<?php echo $row['product_main_img'] ?>" alt=""></td>
+                                            <td><img src="../uploads/<?php echo $row['product_main_img']?>"   class='w-25' alt=""></td>
                                             <td><?php echo $row['order_date'] ?></td>
-                                            <td><?php echo $row['product_countete'] ?></td>
                                             <td>
                                                 <a href = "process.php?delete_order=<?php echo $row['order_id'] ?>" class="item  " data-toggle="tooltip" data-placement="top" name="Delete">
                                                     <i class="fas fa-trash h5 "></i>

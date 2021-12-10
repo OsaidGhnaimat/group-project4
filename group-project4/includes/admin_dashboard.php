@@ -65,12 +65,12 @@ if (isset($_GET['edit_admin'])) {
                                 if ($update == true) { 
                                 ?>
                                 
-                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-100 float-right" name="update_admin">
+                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-25 float-right" name="update_admin">
                                                 <span id="payment-button-amount">update</span>
                                                 <span id="payment-button-sending" style="display:none;">Sending…</span>
                                             </button>
                                         <?php } else { ?>
-                                            <button type="submit" id="add-button" class="btn btn-lg btn-block  w-100 float-right" name="add_admin">
+                                            <button type="submit" id="add-button" class="btn btn-lg btn-block  w-25 float-right" name="add_admin">
                                                 <i class="fa fa-plus"></i>&nbsp;
                                                 <span id="payment-button-amount ">Add Admain</span>
                                                 <span id="payment-button-sending" style="display:none;">Sending…</span>

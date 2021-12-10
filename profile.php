@@ -9,9 +9,11 @@ function path()
     global $imagepath;
     $image = $_FILES['filename'] ?? null;
     $imagepath  = "";
+	
     if ($image && $image['tmp_name']) {
-        $imagepath = "/register/uploads/" . uniqid() . $image['name'];
-        move_uploaded_file($image['tmp_name'], $imagepath);
+        $imagepath = uniqid() . $image['name'];
+		$file_des   = "./group-project4/uploads/".$imagepath; //file destination
+        move_uploaded_file($image['tmp_name'], $file_des);
     }
 }
 if (isset($_POST['update'])) {
@@ -49,7 +51,7 @@ $row = $result->fetch_assoc();
 	<div class="container  m-auto justify-content-center ">
 		<div class="row w-25  m-auto justify-content-center p-b-50 rounded-circle">
 			
-				<img src="register/uploads/<?php echo @$row['user_img'] ?>" class="card-img-top img-prof" alt="...">
+				<img src="./group-project4/uploads/<?php echo @$row['user_img'] ?>" class="card-img-top img-prof" alt="...">
 			
 		</div>
 		<div class="card mt-3 p-3 d-flex flex-column justify-content-center w-50 m-auto ">
@@ -68,9 +70,14 @@ $row = $result->fetch_assoc();
 					<span class="input-group-text d-block" id="inputGroup-sizing-default">Password </span>
 					<input type="password" value="<?php echo @$row['user_password'] ?> " name="user_password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
-				<div>
+				<!-- <div>
 					<input type="file" id="myFile" name="filename">
-				</div>
+				</div> -->
+				<div class="mb-3">
+                        <label for="myFile" class="form-label head-photo">select photo</label>
+                        <input class="form-control inp-file inp-marg" type="file" id="myFile" name="filename">
+                        
+                    </div> 
 				<div class="form-actions form-group float-right w-25 ">
 					<button type="submit" id="update_profile" class="btn btn-primary btn-sm w-100 p-2" name="update"> Save Changes</button>
 				</div>
@@ -78,7 +85,7 @@ $row = $result->fetch_assoc();
 		</div>
 	</div>
 </div>
-<a href="register/logout.php">logout</a>
+
 
 <?php
 include 'includes/footer-user.php';

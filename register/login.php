@@ -3,19 +3,19 @@
 
      if(isset($_POST['submit'])){
         // $check = true;
-         
+
         $email          = $_POST['email'];
         $pass           = $_POST['pass'];
-      
+
         // if empty
         if(empty($pass)){
             $pass_error = 'please enter your password';
             // $check = false;
-          }
-          if(empty($email)){
-               $email_error = 'please enter your Email ';
+        }
+        if(empty($email)){
+            $email_error = 'please enter your Email ';
             //    $check = false;
-             }
+            }
 
         
         if(!empty($email) && !empty($pass)){
@@ -31,7 +31,7 @@
                     $_SESSION['admin'] = $row1['admin_id'];
                  }
 
-                  header("Location:manage_admin.php");
+                  header("Location:../group-project4/includes/admin_dashboard.php");
                 
             }else {
                 //  if user

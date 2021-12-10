@@ -99,12 +99,12 @@ if (isset($_GET['edit_product'])) {
                                 </div>
                                 <div class="form-group">
                                 <?php if ($update == true) { ?>
-                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-100 float-right" name="update_product">
+                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-25 float-right" name="update_product">
                                                 <span id="payment-button-amount">update</span>
                                                 <span id="payment-button-sending" style="display:none;">Sending…</span>
                                             </button>
                                         <?php } else { ?>
-                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-100 float-right" name="add_product">
+                                            <button type="submit" id="add-button" class="btn btn-lg btn-block w-25 float-right" name="add_product">
                                                 <i class="fa fa-plus"></i>&nbsp;
                                                 <span id="payment-button-amount">Add Products</span>
                                                 <span id="payment-button-sending" style="display:none;">Sending…</span>
@@ -148,7 +148,8 @@ if (isset($_GET['edit_product'])) {
                                                              products.product_price,  products.product_sale_status, products.product_tags, products.product_quantity,
                                                              categories.category_name 
                                                      FROM products
-                                                     JOIN categories ON products.category_id = categories.category_id ";
+                                                     JOIN categories ON products.category_id = categories.category_id 
+                                                     Order by 1 DESC";
 
                                         $order_query   = mysqli_query($conn, $query);
                                         while ($row  = mysqli_fetch_assoc($order_query)) { ?>

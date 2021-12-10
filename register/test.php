@@ -11,6 +11,8 @@ function path()
     $imagepath  = "";
     if ($image && $image['tmp_name']) {
         $imagepath = "./uploads/" . uniqid() . $image['name'];
+        
+
         move_uploaded_file($image['tmp_name'], $imagepath);
     }
 }

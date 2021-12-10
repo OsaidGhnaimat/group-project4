@@ -8,7 +8,7 @@
 					<img src="images/icons/icon-close2.png" alt="CLOSE">
 				</button>
 
-				<form class="wrap-search-header flex-w p-l-15" action="search.php" method="post">
+				<form class="wrap-search-header flex-w p-l-15" action="search.php" method="GET">
 					<button class="flex-c-m trans-04" >
 						<i class="zmdi zmdi-search"></i>
 					</button>
@@ -119,11 +119,13 @@
 			<div class="col-md-4 col-lg-3 p-b-80">
 					<div class="side-menu">
 						<div class="bor17 of-hidden pos-relative">
-							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
-
-							<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
-								<i class="zmdi zmdi-search"></i>
-							</button>
+						<form action="search.php" method="GET">
+								<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
+							
+								<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04" name="submit">
+									<i class="zmdi zmdi-search"></i>
+								</button>
+							</form>
 						</div>
 
 						<div class="p-t-55">
@@ -182,7 +184,6 @@
 					$search_query = mysqli_query($conn, $query);
 					if(!$search_query){
 					 die("QUERY FAILED". mysqli_error($conn));//just to check if its work
- 
 					 }
 					 $count = mysqli_num_rows($search_query);
 					 if($count == 0){

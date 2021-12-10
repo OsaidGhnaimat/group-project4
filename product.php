@@ -119,11 +119,13 @@
 			<div class="col-md-4 col-lg-3 p-b-80">
 					<div class="side-menu">
 						<div class="bor17 of-hidden pos-relative">
-							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
-
-							<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
-								<i class="zmdi zmdi-search"></i>
-							</button>
+						<form action="search.php" method="post">
+								<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
+							
+								<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04" name="submit">
+									<i class="zmdi zmdi-search"></i>
+								</button>
+							</form>
 						</div>
 
 						<div class="p-t-55">
@@ -168,57 +170,6 @@
 				<div class="col-md-8 col-lg-9 p-b-80">
 					<div class="row d-flex flex-wrap">
 
-					 
-
-
-
-
-					<?php 
-					
-					//  $result = $conn->query("SELECT * FROM products") or die($conn->error);
-					//  while ($row = $result->fetch_assoc()) :
-					 ?>
-				    <!-- <div class="col-sm-6 col-md-3 col-lg-4 p-b-35 isotope-item women">  -->
-					<!-- Block2 -->
-					 <!-- <div class="block2"> 
-						<div class="block2-pic hov-img0">
-							<img src="images/product-01.jpg" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Quick View
-							</a>
-						</div>
-
-						 <div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-								<?php 
-								// echo $row['product_name']
-								 ?>
-								</a>
-								<span class="stext-105 cl3">
-								   <h4 class="d-inline"> $<?php 
-								//    echo $row['product_sale_price']
-								    ?> </h4> 
-								   <del style="color:red">$<?php
-								    // echo $row['product_price'] 
-									?> </del>
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-						</div> 
-					 </div>
-				</div>  -->
-				<?php 
-			  // endwhile;
-			  ?>
-
 					<?php 
 					
 						$id_category_product = $_GET['category'];
@@ -237,7 +188,7 @@
    
 							<div class="block2-txt flex-w flex-t p-t-14">
 							   <div class="block2-txt-child1 flex-col-l ">
-								   <a href="product-detail.php?product=<?php echo $row['product_id'] ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+								   <a href="product-detail.php?product=<?php echo $row['product_id'] ?>" class="font-weight-bold stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 								   <?php echo $row['product_name'] ?>
 								   </a>
    
@@ -245,8 +196,8 @@
 								   <span class="stext-105 cl3"> 
 									  
 									  <?php if ($row['product_sale_status'] == 1) {  ?>
-										<h4 class="d-inline"> $<?php echo $row['product_sale_price'] ?>  </h4> 
-										<del style="color:red"> $<?php echo $row['product_price'] ?> </del>
+										<h4 class="font-weight-bold text-danger d-inline"> $<?php echo $row['product_sale_price'] ?>  </h4> 
+										<del class="text-secondary"> $<?php echo $row['product_price'] ?> </del>
 									<?php  } else { ?>
 										<h4> $<?php echo $row['product_price'] ?> </h4>
 									 <?php } ?>
@@ -258,13 +209,7 @@
 						</div>
 				      </div> 
 				   <?php endwhile;  ?>
-				
-							
-					
-					
-					</div>
-				
-
+				  </div>
 				</div>
 			</div>
 		</div>

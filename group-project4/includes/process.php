@@ -1,6 +1,6 @@
 <?php
 include 'connection.php';
-
+session_start();
 /*---------------Admains-----------------*/
 
 //add
@@ -8,15 +8,15 @@ if (isset($_POST['add_admin'])) {
     $name       = $_POST['admin_name'];
     $email      = $_POST['admin_email'];
     $password   = $_POST['admin_password'];
-    $file       = $_FILES['fileToUpload'];//return image information ia assoc array 
-    $image      = $file["name"];//$file is the array name 
-    $new_image  = uniqid("IMG-", true).'.png';
-    $file_des   = "../uploads/".$new_image;//file destination
+    $file       = $_FILES['fileToUpload']; //return image information ia assoc array 
+    $image      = $file["name"]; //$file is the array name 
+    $new_image  = uniqid("IMG-", true) . '.png';
+    $file_des   = "../uploads/" . $new_image; //file destination
     move_uploaded_file($file['tmp_name'], $file_des);
     $conn->query("INSERT INTO admins ( admin_name, admin_email , admin_password,admin_img) 
                    VALUES            ('$name', '$email', '$password', '$new_image')") or die($conn->error);
     header('location:admin_dashboard.php');
-    }
+}
 
 //To delete Admin 
 if (isset($_GET['delete_admin'])) {
@@ -32,15 +32,15 @@ if (isset($_POST['update_admin'])) {
     $admin_email    = $_POST['admin_email'];
     $admin_password = $_POST['admin_password'];
 
-    $file       = $_FILES['fileToUpload'];//return image information ia assoc array 
-    $image      = $file["name"];//$file is the array name 
-    $new_image  = uniqid("IMG-", true).'.png';
-    $file_des   = "../uploads/".$new_image;//file destination
+    $file       = $_FILES['fileToUpload']; //return image information ia assoc array 
+    $image      = $file["name"]; //$file is the array name 
+    $new_image  = uniqid("IMG-", true) . '.png';
+    $file_des   = "../uploads/" . $new_image; //file destination
     move_uploaded_file($file['tmp_name'], $file_des);
-   
-   $conn->query("UPDATE admins SET admin_img = '$new_image', admin_name = '$admin_name', admin_email='$admin_email', admin_password ='$admin_password'
+
+    $conn->query("UPDATE admins SET admin_img = '$new_image', admin_name = '$admin_name', admin_email='$admin_email', admin_password ='$admin_password'
                   WHERE admin_id = '$id' ") or die($conn->error);
-   header('location:admin_dashboard.php');
+    header('location:admin_dashboard.php');
 }
 /*-----------------Users--------------------*/
 //adding new user
@@ -48,24 +48,23 @@ if (isset($_POST['add_user'])) {
     $name       = $_POST['user_name'];
     $email      = $_POST['user_email'];
     $password   = $_POST['user_password'];
-    
+
     $file       = $_FILES['fileToUpload'];
     $image      = $file["name"];
-    $new_image  = uniqid("IMG-", true).'.png';
-    $file_des   = "../uploads/".$new_image;
-    
+    $new_image  = uniqid("IMG-", true) . '.png';
+    $file_des   = "../uploads/" . $new_image;
+
     move_uploaded_file($file['tmp_name'], $file_des);
     $conn->query("INSERT INTO users ( user_name ,user_email ,user_password ,user_img )
                  VALUES ( '$name', '$email','$password' , '$new_image')") or die($conn->error);
-   header('location:manage_users.php');
-
+    header('location:manage_users.php');
 }
 
 //delete user
 if (isset($_GET['delete_user'])) {
     $id = $_GET["delete_user"];
     $conn->query("DELETE FROM users WHERE user_id= $id") or die($conn->error);
-   header('location:manage_users.php');
+    header('location:manage_users.php');
 }
 
 
@@ -80,12 +79,12 @@ if (isset($_POST['update_user'])) {
     $user_image = $file["name"];
     $new_image  = uniqid("IMG-", true) . '.png';
     $file_des   = "../uploads/" . $new_image;
-    
+
     move_uploaded_file($file['tmp_name'], $file_des);
     $conn->query("UPDATE users 
                   SET user_name = '$name', user_email='$email', user_password='$password', user_img='$new_image'  
                   WHERE user_id = '$id' ") or die($conn->error);
-   
+
     header('location:manage_users.php?');
 }
 
@@ -117,7 +116,7 @@ if (isset($_GET['edit_cat'])) {
     $update         = true;
     $result         = $conn->query("SELECT * FROM categories WHERE category_id ='$id'") or die($conn->error);
     $row            = $result->fetch_array();
-    $category       = $row['category_name'];  
+    $category       = $row['category_name'];
 }
 
 //To save the changes after edittig
@@ -147,15 +146,15 @@ if (isset($_GET['delete_order'])) {
 if (isset($_GET['delete_comment'])) {
     $id = $_GET["delete_comment"];
     $conn->query("DELETE FROM comments WHERE comment_id = $id ") or die($conn->error);
-    header('location:manage_orders.php');
+    header('location:manage_comments.php');
 }
- //---------------------------------------------------------------------------------
- //---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
 
 
- //add to categories
-$p_name = $p_des = $p_img1 = $p_img2 = $p_img3 = $sale_q= $price 
-        = $sale_price = $sale_status = $tags = $category = '';
+//add to categories
+$p_name = $p_des = $p_img1 = $p_img2 = $p_img3 = $sale_q = $price
+    = $sale_price = $sale_status = $tags = $category = '';
 if (isset($_POST['add_product'])) {
     $p_name         = $_POST["name"];
     $p_des          = $_POST['product_des'];
@@ -163,7 +162,7 @@ if (isset($_POST['add_product'])) {
     $file           = $_FILES['fileToUpload'];
     $p_img1         = $file["name"];
     $new_image1      = uniqid("IMG-", true) . '.png';
-    $file_des       = "../uploads/" . $new_image1 ;
+    $file_des       = "../uploads/" . $new_image1;
     move_uploaded_file($file['tmp_name'], $file_des);
     //main img2
     $file           = $_FILES['fileToUpload2'];
@@ -175,7 +174,7 @@ if (isset($_POST['add_product'])) {
     $file           = $_FILES['fileToUpload3'];
     $p_img3         = $file["name"];
     $new_image3      = uniqid("IMG-", true) . '.png';
-    $file_des       = "../uploads/" .$new_image3;
+    $file_des       = "../uploads/" . $new_image3;
     move_uploaded_file($file['tmp_name'], $file_des);
     //
     $price         = $_POST['product_price'];
@@ -184,8 +183,8 @@ if (isset($_POST['add_product'])) {
     $sale_q        = $_POST['product_quantity'];
     $tags          = $_POST['product_tag'];
     $category      = $_POST['category_name'];
-    
-   echo  $category,  $p_name, $p_des ;
+
+    echo  $category,  $p_name, $p_des;
 
     $conn->query("INSERT INTO products ( product_name, product_description, 
                               product_main_img, product_sub1_img,
@@ -195,8 +194,8 @@ if (isset($_POST['add_product'])) {
     
                  VALUES ('$p_name ', '$p_des',  '$new_image1', '$new_image2', '$new_image3'
                  , '$price ','$sale_price', '  $sale_q', '$category' , '  $tags ','$sale_flage')") or die($conn->error);
-   
-  header('location:manage_products.php');
+
+    header('location:manage_products.php');
 }
 
 //delete Products
@@ -215,19 +214,19 @@ if (isset($_POST['update_product'])) {
     $file           = $_FILES['fileToUpload'];
     $p_img1         = $file["name"];
     $new_image1      = uniqid("IMG-", true) . '.png';
-    $file_des       = "../uploads/".$new_image1 ;
+    $file_des       = "../uploads/" . $new_image1;
     move_uploaded_file($file['tmp_name'], $file_des);
     //main img2
     $file           = $_FILES['fileToUpload2'];
     $p_img2         = $file["name"];
     $new_image2      = uniqid("IMG-", true) . '.png';
-    $file_des       = "../uploads/".$new_image2;
+    $file_des       = "../uploads/" . $new_image2;
     move_uploaded_file($file['tmp_name'], $file_des);
     //main img3
     $file           = $_FILES['fileToUpload3'];
     $p_img3         = $file["name"];
     $new_image3      = uniqid("IMG-", true) . '.png';
-    $file_des       = "../uploads/".$new_image3;
+    $file_des       = "../uploads/" . $new_image3;
     move_uploaded_file($file['tmp_name'], $file_des);
     //
     $price         = $_POST['product_price'];
@@ -236,8 +235,8 @@ if (isset($_POST['update_product'])) {
     $sale_q        = $_POST['product_quantity'];
     $tags          = $_POST['product_tag'];
     $category      = $_POST['category_name'];
-    
-  echo  $category,  $p_name, $p_des ;
+
+    echo  $category,  $p_name, $p_des;
 
     $conn->query("UPDATE products 
                   SET    product_name = '$p_name' , product_description = '$p_des', 
@@ -245,6 +244,64 @@ if (isset($_POST['update_product'])) {
                          product_sub2_img = '$new_image3', product_price = '$price' , product_sale_price = '$sale_price',
                          product_quantity = '$sale_q' ,category_id = '$category' ,product_tags = '$tags ', product_sale_status = '$sale_flage'
                   WHERE  product_id = '$id' ") or die($conn->error);
-   
-   header('location:manage_products.php');
+
+    header('location:manage_products.php');
 }
+
+//delete Products
+if (isset($_GET['cart_product'])) {
+    if (count($_SESSION['cart']) == 1) {
+        unset($_SESSION['cart']);
+        header('location:../../shoping-cart.php');
+        exit();
+    } else {
+        $id = $_GET["cart_product"];
+        // echo $id;
+        // echo "<pre>";
+        // print_r($_SESSION);
+        // print_r($_SESSION['cart']);
+        // print_r($_SESSION['cart'][$id]);
+        unset($_SESSION['cart'][$id]);
+        header('location:../../shoping-cart.php');
+        
+    }
+}
+// ---------------------------------------------------------------
+if (isset($_POST['Proceed-to-Checkout'])) {
+    if (isset($_SESSION['user'])) {
+         
+        $user_id = $_SESSION['user'];
+
+        //insert the order in order table to give it id 
+        $conn->query("INSERT INTO orders ( user_id ) VALUES ($user_id)") or die($conn->error);
+
+        // get the order_id and insert it's products in order details table 
+        $result = $conn->query("SELECT * FROM orders WHERE user_id ='$user_id' ORDER BY order_id DESC LIMIT 1") or die($conn->error);
+        $row = $result->fetch_assoc();
+        $order_id = $row['order_id'];
+
+        //insert the order products in order detailes table
+        foreach ($_SESSION['cart'] as $key => $value) {
+           
+            $conn->query("INSERT INTO order_details ( user_id, order_id, product_id, product_quantity)
+                        VALUES ('$user_id', '$order_id',  '{$value['id']}', '{$value['num-product']}')") or die($conn->error);
+        }
+        $_SESSION['ordered']= [
+         "status"   => true,
+         "order_id" => $order_id
+        ];
+         echo "<pre>";
+         print_r($_SESSION['cart']);
+         echo "<pre>";
+         print_r($_SESSION);
+         print_r($_SESSION['cart']);
+         unset($_SESSION['cart']);
+      
+         
+         header('location:../../shoping-cart.php');
+        //print_r($_SESSION['cart'][$id]);
+        
+    }else {
+        header('location:../../login2.php');
+    } 
+} 

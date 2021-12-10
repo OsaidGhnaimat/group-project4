@@ -4,9 +4,10 @@ include './includes/header-user.php';
 
 <!-- Slider -->
 <section class="section-slide">
+<?php	print_r($_SESSION['user']); ?>
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1" style="background-image: url('img/background/art-lasovsky-8XddFc6NkBY-unsplash.jpg');">
+				<div class="item-slick1" style="background-image: url('img/background/os.jpg');">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
@@ -17,7 +18,7 @@ include './includes/header-user.php';
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-                                 Start collect your stationery 
+                                 Start Shopping
 								</h2>
 							</div>
 								
@@ -30,7 +31,7 @@ include './includes/header-user.php';
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url(images/slide-02.jpg);">
+				<div class="item-slick1" style="background-image: url('img/jess-bailey-l3N9Q27zULw-unsplash.jpg');">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
@@ -54,18 +55,18 @@ include './includes/header-user.php';
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url(images/slide-03.jpg);">
+				<div class="item-slick1" style="background-image: url('img/back3.jpg');">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
 								<span class="ltext-101 cl2 respon2">
-                                Collection 2022
+                                
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									New arrivals
+									
 								</h2>
 							</div>
 								
@@ -205,8 +206,8 @@ include './includes/header-user.php';
 								</a>
 
 								<span class="stext-105 cl3">
-								   <h4 class="d-inline"> $<?php echo $row['product_sale_price'] ?> </h4> 
-								   <del style="color:red">   $<?php echo $row['product_price'] ?> </del>
+								   <h4 class="d-inline text-danger font-weight-bold"> $<?php echo $row['product_sale_price'] ?> </h4> 
+								   <del>$<?php echo $row['product_price'] ?> </del>
 								</span>
 								
 							</div>

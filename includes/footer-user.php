@@ -8,7 +8,7 @@
 			<div class="p-t-40">
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                     Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Colorful Team. 
+                     Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by Be Smart Team. 
                          
                       <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
@@ -72,7 +72,7 @@
 		$('.js-addwish-b2').each(function(){
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+				sweetalert(nameProduct, "is added to wishlist !", "success",20000);
 
 				$(this).addClass('js-addedwish-b2');
 				$(this).off('click');

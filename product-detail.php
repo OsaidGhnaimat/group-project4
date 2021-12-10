@@ -1,7 +1,27 @@
 <?php
-
 // session_unset();
 include 'includes/header-user.php';
+$product_id = $_GET['product'];
+$products = $conn->query("SELECT * FROM products WHERE product_id=$product_id") or die($conn->error);
+if (isset($_POST['add-btn'])) {
+	$comment_content = $_POST['review'];
+	$comment_user = $_POST['name'];
+	$a = $_SESSION['user'];
+	// Return date/time info of a timestamp; then format the output
+	$mydate = getdate(date("U"));
+	$date = "$mydate[year]-$mydate[mon]-$mydate[mday]";
+	$query = "INSERT INTO comments(user_id , product_id, comment_content , comment_date , comment_user )
+		                       VALUES ($a,'$product_id' ,'$comment_content' , '$date' , '$comment_user')";
+	$admin_query = mysqli_query($conn, $query);
+	@header('location:product-detail.php');
+}
+
+$comments = $conn->query("SELECT comments.comment_id, comments.comment_content, comments.comment_date,comments.comment_user, 
+											                      users.user_name, products.product_id 
+									                             FROM comments
+									                             INNER JOIN users    ON comments.user_id    = users.user_id
+									                             INNER JOIN products ON comments.product_id = products.product_id 
+																 WHERE comments.product_id=$product_id") or die($conn->error);
 if (isset($_POST['add-to-cart'])) {
 	if (isset($_SESSION['cart'])) {
 		$item = array_column($_SESSION['cart'], 'id');
@@ -19,7 +39,6 @@ if (isset($_POST['add-to-cart'])) {
 		}
 	} else {
 		$all = array(
-			"name"            => $_POST['product_name'],
 			"price"           => $_POST['product_price'],
 			"img"             => $_POST['product_img'],
 			"id"              => $_POST['product_id'],
@@ -29,9 +48,8 @@ if (isset($_POST['add-to-cart'])) {
 	}
 } ?>
 <?php
-$product_id = $_GET['product'];
-$result = $conn->query("SELECT * FROM products WHERE product_id=$product_id") or die($conn->error);
-while ($row = $result->fetch_assoc()) : ?>
+
+while ($row = $products->fetch_assoc()) : ?>
 	<!-- Product Detail -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
@@ -67,7 +85,7 @@ while ($row = $result->fetch_assoc()) : ?>
 								<div class="item-slick3" data-thumb="./group-project4/uploads/<?php echo $row['product_main_img'] ?>">
 									<div class="wrap-pic-w pos-relative w-75">
 										<img src="./group-project4/uploads/<?php echo $row['product_main_img'] ?>" alt="IMG-PRODUCT">
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="./group-project4/uploads/<?php echo $row['product_main_img'] ?>">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -75,7 +93,7 @@ while ($row = $result->fetch_assoc()) : ?>
 								<div class="item-slick3" data-thumb="./group-project4/uploads/<?php echo $row['product_sub1_img'] ?>">
 									<div class="wrap-pic-w pos-relative w-75">
 										<img src="./group-project4/uploads/<?php echo $row['product_sub1_img'] ?>" alt="IMG-PRODUCT">
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="./group-project4/uploads/<?php echo $row['product_sub1_img'] ?>">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -83,7 +101,7 @@ while ($row = $result->fetch_assoc()) : ?>
 								<div class="item-slick3" data-thumb="./group-project4/uploads/<?php echo $row['product_sub2_img'] ?>">
 									<div class="wrap-pic-w pos-relative w-75">
 										<img src="./group-project4/uploads/<?php echo $row['product_sub2_img'] ?>" alt="IMG-PRODUCT">
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="./group-project4/uploads/<?php echo $row['product_sub2_img'] ?>">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -95,16 +113,16 @@ while ($row = $result->fetch_assoc()) : ?>
 				<!-- End product detail -->
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
-						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+						<h4 class="mtext-105 cl2 js-name-detail p-b-14 font-weight-bold">
 							<?php echo $row['product_name'] ?>
 						</h4>
 
 						<span class="mtext-106 cl2">
 							<?php if ($row['product_sale_status'] == 1) {  ?>
-								<h4 class="d-inline"> $<?php echo $row['product_sale_price'] ?> </h4>
-								<del style="color:red"> $<?php echo $row['product_price'] ?> </del>
+								<h4 class="text-danger"> $<?php echo $row['product_sale_price'] ?> </h4>
+								<del class="text-secondary"> $<?php echo $row['product_price'] ?> </del>
 							<?php  } else { ?>
-								<h4> $<?php echo $row['product_price'] ?> </h4>
+								<h4 class="font-weight-bold"> $<?php echo $row['product_price'] ?> </h4>
 							<?php } ?>
 						</span>
 						<p class="stext-102 cl3 p-t-23 w-100">
@@ -136,23 +154,7 @@ while ($row = $result->fetch_assoc()) : ?>
 
 			<!-- comment  -->
 			<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-				<div class="flex-m bor9 p-r-10 m-r-11">
-					<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-						<i class="zmdi zmdi-favorite"></i>
-					</a>
-				</div>
 
-				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-					<i class="fa fa-facebook"></i>
-				</a>
-
-				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-					<i class="fa fa-twitter"></i>
-				</a>
-
-				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-					<i class="fa fa-google-plus"></i>
-				</a>
 			</div>
 		</div>
 		</div>
@@ -191,14 +193,7 @@ while ($row = $result->fetch_assoc()) : ?>
 												<span class="stext-102 cl3 m-r-16">
 													Your Rating
 												</span>
-												<span class="wrap-rating fs-18 cl11 pointer">
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-													<input class="dis-none" type="number" name="rating">
-												</span>
+
 											</div>
 											<div class="row p-b-25">
 												<div class="col-12 p-b-5">
@@ -214,35 +209,21 @@ while ($row = $result->fetch_assoc()) : ?>
 												Submit
 											</button>
 										</form>
+
 										<?php
-										// Return date/time info of a timestamp; then format the output
-										$mydate = getdate(date("U"));
-										$date = "$mydate[year]-$mydate[mon]-$mydate[mday]";
-										?>
-										<?php
-										$result = $conn->query("SELECT comments.comment_id, comments.comment_content, comments.comment_date,comments.comment_user, 
-											                      users.user_name, products.product_id 
-									                             FROM comments
-									                             INNER JOIN users    ON comments.user_id    = users.user_id
-									                             INNER JOIN products ON comments.product_id = products.product_id 
-																 WHERE comments.product_id=$product_id") or die($conn->error);
-										while ($row = $result->fetch_assoc()) :
+
+										while ($row = $comments->fetch_assoc()) :
 										?>
 											<div class="size-207">
 												<div class="flex-w flex-sb-m p-b-17">
 													<span class="mtext-107 cl2 p-r-20">
-														<?php echo $row['comment_user'] ?>
+														<?php echo @$row['comment_user'] ?>
 													</span>
-													<span class="fs-18 cl11">
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star"></i>
-														<i class="zmdi zmdi-star-half"></i>
-													</span>
+
 												</div>
 												<p class="stext-102 cl6">
-													<?php echo $row['comment_content'] ?>
+													<?php echo @$row['comment_content'];
+													?>
 												</p>
 											</div>
 									</div>
@@ -250,14 +231,7 @@ while ($row = $result->fetch_assoc()) : ?>
 										endwhile;
 								?>
 								<!-- Add review -->
-								<?php
-								if (isset($_POST['add-btn'])) {
-									$comment_content = $_POST['review'];
-									$comment_user = $_POST['name'];
 
-									$query = "INSERT INTO comments(user_id , product_id, comment_content , comment_date , comment_user ) VALUES (15,'$product_id' ,'$comment_content' , '$date' , '$comment_user')";
-									$admin_query = mysqli_query($conn, $query);
-								} ?>
 								</div>
 							</div>
 						</div>
@@ -269,6 +243,9 @@ while ($row = $result->fetch_assoc()) : ?>
 	<?php endwhile; ?>
 	</div>
 	</section>
+
 	<?php
+
+
 	include 'includes/footer-user.php';
 	?>

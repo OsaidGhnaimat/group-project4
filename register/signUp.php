@@ -79,6 +79,14 @@
                       header("Location:../index.php");
                 
         }
+
+        $check = false;
+        if($check = true){
+          echo "  ";
+        }
+        $check = true;
+
+
       }
       
 ?>
@@ -141,7 +149,7 @@
 					</div>
 					<input type="submit" value="SIGN UP" name="submit" id="submit">
 				</form>
-				<p>Already Have an account ? <a href="login.php"> Login Now!</a></p>
+				<p>Already Have an account ? <a href="/login2.php"> Login Now!</a></p>
 			</div>
 		</div>
 		<!-- copyright -->

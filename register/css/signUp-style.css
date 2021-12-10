@@ -9,12 +9,8 @@
 /* ///////// */
 
 
-  .inp-file{
-      width: 95% !important;
-      opacity: 0.8;
-  }
   .head-photo{
-      color: white;
+      color: black;
   }
   small{
       color: rgb(170, 28, 3)!important;
@@ -122,14 +118,14 @@
   
   /*-- end reset --*/
   body {
-    background: #aaaaaa;
+    /* background: #aaaaaa;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #cccccc, #d8b581);
-    background: -moz-linear-gradient(to top, #cccccc, #d8b581);
-    background: -o-linear-gradient(to top, #cccccc, #d8b581);
-    background: linear-gradient(to top, #cccccc, #d8b581);
+    background: -webkit-linear-gradient(to top, #ffffff, #ffffff);
+    background: -moz-linear-gradient(to top, #ffffff, #ffffff);
+    background: -o-linear-gradient(to top, #ffffff, #ffffff);
+    background: linear-gradient(to top, #ffffff, #ffffff);
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed; 
     font-family: 'Roboto', sans-serif;
   }
   
@@ -149,33 +145,28 @@
   }
   
   .main-agileinfo {
-    width: 35%;
+    width: 50%;
     margin: 3em auto;
-    background: rgba(0, 0, 0, 0.18);
+    
     background-size: cover;
+    color:black;
   }
   
   .agileits-top {
     padding: 3em;
+    background-color: blanchedalmond;
+    border-radius: 10px;
   }
   
   input[type="text"], input[type="email"], input[type="password"] {
     font-size: 0.9em;
-    color: #fff;
+    color: black;
     font-weight: 100;
-    width: 94.5%;
+    width: 100%;
     display: block;
-    border: none;
+    border: 1px solid rgba(194, 193, 193, 0.932);
     padding: 0.8em;
-    border: solid 1px rgba(255, 255, 255, 0.37);
-    -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-    transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #fff 4%);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #fff 4%);
-    background-position: -800px 0;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    color: #fff;
+    margin-top: 5px;
     font-family: 'Roboto', sans-serif;
   }
   
@@ -244,14 +235,14 @@
   
   .agileits-top p {
     font-size: 1em;
-    color: #fff;
+    color: black;
     text-align: center;
     letter-spacing: 1px;
     font-weight: 300;
   }
   
   .agileits-top p a {
-    color: #fff;
+    color: black;
     -webkit-transition: .5s all;
     -moz-transition: .5s all;
     transition: .5s all;
@@ -547,7 +538,7 @@
   /*-- responsive-design --*/
   @media(max-width:1440px) {
     input[type="text"], input[type="email"], input[type="password"] {
-      width: 94%;
+      width: 100%;
     }
   }
   
